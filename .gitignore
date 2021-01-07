@@ -24,6 +24,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+/app/Config/Database.php
+
+/writable
 # Windows shortcuts
 *.lnk
 
