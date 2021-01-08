@@ -4,23 +4,11 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		$db = \Config\Database::connect();
+		$data = [
+			'meta_title' => 'Board Main Page',
+			'title' => 'Board Main Page',
+		];
 
-        $query = $db->query('SELECT * FROM topic');
-		$results = $query->getResult();
-		echo 'db connection test<br/>';
-        foreach($results as $row)
-        {
-			echo $row->id;
-			echo $row->title;
-			echo "<br/>";
-		}
-	}
-
-	public function board()
-	{
-		echo view('head');
-		echo view('board');
-		echo view('footer');
+		return view('board', $data);
 	}
 }

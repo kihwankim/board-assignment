@@ -1,7 +1,10 @@
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
 <div id="app">
     <v-app>
       <v-main>
-        <v-btn>Hello world</v-btn>
+        <v-btn><?= $title ?></v-btn>
       </v-main>
     </v-app>
   </div>
@@ -14,3 +17,4 @@
       vuetify: new Vuetify(),
     })
   </script>
+  <?= $this->endSection() ?>
