@@ -15,7 +15,9 @@
 * 수정
 
 ## 테이블 필수 항목
+* ID(int)
 * 작성자(varchar)
+* 제목(varchar)
 * 내용(text)
 * 등록 시간(datetime)
 * 업데이트시간(datetime)
