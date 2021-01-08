@@ -101,7 +101,7 @@ _modules/*
 # Jetbrains editors (PHPStorm, etc)
 .idea/
 *.iml
-
+.env
 # Netbeans
 nbproject/
 build/
