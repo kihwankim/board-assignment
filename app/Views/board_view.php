@@ -50,7 +50,7 @@
       },
       methods: {
           linkDelete(id) {
-            window.location.href = "../../home/delete/"+ id;
+            window.location.href = `../../home/delete/${id}`;
           }
       }
     })
