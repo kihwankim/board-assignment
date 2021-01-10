@@ -4,11 +4,22 @@ use App\Models\BoardModel;
 
 class Home extends BaseController
 {
+	private $eachPageNumber = 10;
+	private $pagiPath = 'version4/public/index.php/home';
+
 	public function index()
 	{
+		// $pager = \Config\Services::pager();
+		$boardModel = new BoardModel();
+		$boards = $boardModel->paginate($this->eachPageNumber);
+		$pager = $boardModel->pager;
+		$pager->setPath($this->pagiPath);
+		          
 		$data = [
 			'meta_title' => 'Board Main Page',
 			'title' => 'Board Main Page',
+			'boards' => $boards,
+			'pager' => $pager,
 		];
 
 		return view('board', $data);
