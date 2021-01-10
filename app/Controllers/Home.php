@@ -79,4 +79,29 @@ class Home extends BaseController
 		}
 		return redirect()->to('/version4/public/index.php/home');
 	}
+
+	public function modifyDataPage($id)
+	{
+		$boardModel = new BoardModel();
+		$board = $boardModel->find($id);
+		$data = [
+			'meta_title' => 'fix board page',
+			'title' => 'fix board page',
+			'board' => $board
+		];
+
+		return view('write_fix', $data);
+	}
+
+	public function reflectModifiedData()
+	{
+		if($this->request->getMethod() == 'post')
+		{
+			$boardModel = new BoardModel();
+			$_POST['id'] = (int)$_POST['id'];
+			$boardModel->save($_POST);
+		}
+		
+		return redirect()->to('/version4/public/index.php/home');
+	}
 }

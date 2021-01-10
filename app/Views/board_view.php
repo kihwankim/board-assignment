@@ -31,6 +31,7 @@
             large
             color="red"
             elevation="2"
+            @click="linkEditPage(<?= $board['id'] ?>)"
             >
                 edit
             </v-btn>
@@ -50,7 +51,10 @@
       },
       methods: {
           linkDelete(id) {
-            window.location.href = `../../home/delete/${id}`;
+            window.location.href = `../delete/${id}`;
+          },
+          linkEditPage(id) {
+            window.location.href = `../modification/${id}`;
           }
       }
     })

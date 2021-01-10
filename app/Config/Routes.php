@@ -35,6 +35,8 @@ $routes->group('home', function($routes) {
 	$routes->get('board/(:any)', 'Home::getBoardDataById/$1');
 	$routes->get('board', 'Home::writeBoardPage');
 	$routes->post('new', 'Home::createNewBoard');
+	$routes->get('modification/(:any)', 'Home::modifyDataPage/$1');
+	$routes->post('reflection', 'Home::reflectModifiedData');
 });
 
 /**
