@@ -9,12 +9,19 @@ class Home extends BaseController
 
 	public function index()
 	{
-		// $pager = \Config\Services::pager();
 		$boardModel = new BoardModel();
 		$boards = $boardModel->paginate($this->eachPageNumber);
 		$pager = $boardModel->pager;
 		$pager->setPath($this->pagiPath);
-		          
+
+		for($index = 0; $index < count($boards); $index += 1)
+		{
+			if(strlen($boards[$index]['title']) >= 20){
+				$headStr = substr($boards[$index]['title'], 0, 20).'...';
+				$boards[$index]['title'] = $headStr;
+			}
+		}
+
 		$data = [
 			'meta_title' => 'Board Main Page',
 			'title' => 'Board Main Page',
