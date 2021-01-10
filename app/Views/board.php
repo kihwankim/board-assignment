@@ -29,6 +29,15 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+      <div align="right">
+        <v-btn 
+          large
+          elevation="2"
+          @click="linkCreatePage"
+        >
+              create
+        </v-btn>
+      </div>
       <div style="text-align: center;">
         <?php if($pager): ?>
           <?= $pager->links() ?>
@@ -43,6 +52,11 @@
     new Vue({ 
       el: '#app',
       vuetify: new Vuetify(),
+      methods: {
+        linkCreatePage(){
+          window.location.href = "./home/board";
+        }
+      }
     })
   </script>
   <?= $this->endSection() ?>
