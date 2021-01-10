@@ -23,6 +23,7 @@
             <v-btn 
             large
             elevation="2"
+            @click="linkDelete(<?= $board['id'] ?>)"
             >
                 delete
             </v-btn>
@@ -45,7 +46,12 @@
       el: '#app',
       vuetify: new Vuetify(),
       data: {
-          person: 'hello'
+
+      },
+      methods: {
+          linkDelete(id) {
+            window.location.href = "../../home/delete/"+ id;
+          }
       }
     })
 </script>

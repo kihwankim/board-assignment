@@ -32,6 +32,17 @@ class Home extends BaseController
 		return view('board', $data);
 	}
 
+	public function delete($id)
+	{
+		$boardModel = new BoardModel();
+		$boardData = $boardModel->find($id);
+		if($boardData){
+			$boardModel->delete($id);
+		}
+		
+		return redirect()->to('/version4/public/index.php/home');
+	}
+
 	public function getBoardDataById($id)
 	{
 		$boardModel = new BoardModel();
