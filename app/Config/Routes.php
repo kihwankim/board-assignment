@@ -33,6 +33,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->group('home', function($routes) {
 	$routes->get('board/(:any)', 'Home::getBoardDataById/$1');
+	$routes->get('board', 'Home::writeBoardPage');
+	$routes->post('new', 'Home::createNewBoard');
 });
 
 /**

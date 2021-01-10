@@ -54,7 +54,7 @@
       vuetify: new Vuetify(),
       methods: {
         linkCreatePage(){
-          window.location.href = "./board";
+          window.location.href = "./home/board";
         }
       }
     })

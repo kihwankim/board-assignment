@@ -70,7 +70,7 @@ class Home extends BaseController
 		return view('write', $data);
 	}
 
-	public function writeBoard()
+	public function createNewBoard()
 	{
 		if($this->request->getMethod() == 'post')
 		{
