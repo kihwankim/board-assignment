@@ -1,4 +1,4 @@
-<?= $this->extend('layout/main') ?>
+<?= $this->extend('layout/board_main') ?>
 
 <?= $this->section('content') ?>
 <div id="app">
