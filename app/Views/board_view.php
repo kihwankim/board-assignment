@@ -1,6 +1,17 @@
-<?= $this->extend('layout/main') ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta charset="utf-8"/>
+  <title>'hello'</title>
+</head>
+<body>
 
-<?= $this->section('content') ?>
 <div id="app">
     <template>
     <v-container>
@@ -9,21 +20,21 @@
             outlined 
             style="width: 30%, height=200">
             <v-toolbar dark>
-                <v-toolbar-title><?= $board['title'] ?></v-toolbar-title>
-                <v-subheader><?= $board['create_at'] ?></v-subheader>
+                <v-toolbar-title>{{ board['title'] }}</v-toolbar-title>
+                <v-subheader>{{ board['create_at'] }}</v-subheader>
             </v-toolbar>
             <v-card-subtitle align="right">
-                writer : <?= $board['writer'] ?>
+                writer : {{ board['writer'] }}
             </v-card-subtitle>
             <v-card-text>
-                <?= $board['description'] ?>
+                {{ board['description'] }}
             </v-card-text>
         </v-card>
         <div align="right">
             <v-btn 
             large
             elevation="2"
-            @click="linkDelete(<?= $board['id'] ?>)"
+            @click="linkDelete"
             >
                 delete
             </v-btn>
@@ -31,7 +42,7 @@
             large
             color="red"
             elevation="2"
-            @click="linkEditPage(<?= $board['id'] ?>)"
+            @click="linkEditPage"
             >
                 edit
             </v-btn>
@@ -47,16 +58,38 @@
       el: '#app',
       vuetify: new Vuetify(),
       data: {
-
+        board:{
+            id: location.search,
+            title: '',
+            description: '',
+            writer: '',
+            create_at: ''
+        }
+      },
+      created: function() {
+        const data = location.pathname.split('/');
+        const id = data[data.length - 1];
+        fetch(`http://localhost/version4/public/index.php/data/board/${id}`)
+          .then(res => {
+            if(res.ok){
+              return res.json();
+            }
+            throw new Error("Network reponse was not ok");
+          })
+          .then(json => {
+            this.board = json.board;
+          })
+          .catch(error => {console.log(error)});
       },
       methods: {
-          linkDelete(id) {
-            window.location.href = `../delete/${id}`;
+          linkDelete() {
+            window.location.href = `../../data/removal/${this.board.id}`;
           },
-          linkEditPage(id) {
-            window.location.href = `../modification/${id}`;
+          linkEditPage() {
+            window.location.href = `../modification/${this.board.id}`;
           }
       }
     })
 </script>
-<?= $this->endSection() ?>
+</body>
+</html>

@@ -39,6 +39,10 @@ $routes->group('home', function($routes) {
 	$routes->post('reflection', 'Home::reflectModifiedData');
 });
 
+$routes->group('data', function($routes) {
+	$routes->get('board/(:any)', 'Data::getBoardDataById/$1');
+	$routes->get('removal/(:any)', 'Data::removeById/$1');
+});
 /**
  * --------------------------------------------------------------------
  * Additional Routing
