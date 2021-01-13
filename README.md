@@ -35,3 +35,27 @@
 
 ### 게시판 수정
 <img width="1436" alt="create page-write" src="https://user-images.githubusercontent.com/19687080/104142376-aa5dba80-53fe-11eb-8bd7-469cdb754747.png">
+
+### database 구조
+```sql
+    CREATE TABLE board(
+	id INT PRIMARY KEY auto_increment,
+    writer VARCHAR(30),
+    description TEXT(1000),
+    create_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    update_at DATETIME
+);
+
+insert into board(id, title, writer, description)  
+    values(1, 'title1', 'abc', "hello this is first data"),
+            (2, 'title2', 'bdc', "hello this is second data"),
+            (3, 'title3', 'efg', "hello this is third data"),
+            (4, 'title4', 'afda', "hello this is fourth data"),
+            (5, 'title5', 'afd', "hello this is"),
+            (6, 'title6', 'fdsf', "hello this is this is"),
+            (7, 'title7', 'vdsv', "hello this is  hola !!!"),
+            (8, 'title8', '13', "there are a lot of data"),
+            (9, 'title9', 'fd', "this is second data"),
+            (10, 'title10', 'fadf', "this is next data"),
+            (11, 'title11', 'fdasf', "this is test data");
+```
