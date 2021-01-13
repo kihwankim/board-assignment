@@ -39,7 +39,7 @@
 ### database 구조
 ```sql
     CREATE TABLE board(
-	id INT PRIMARY KEY auto_increment,
+	id INT PRIMARY KEY AUTO_INCREMENT,
     writer VARCHAR(30),
     description TEXT(1000),
     create_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
