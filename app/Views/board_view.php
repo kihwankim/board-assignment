@@ -53,6 +53,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     new Vue({ 
       el: '#app',
@@ -64,7 +65,8 @@
             description: '',
             writer: '',
             create_at: ''
-        }
+        },
+        BASE_URL: 'http://localhost/version4/public/index.php'
       },
       created: function() {
         const data = location.pathname.split('/');
@@ -83,10 +85,16 @@
       },
       methods: {
           linkDelete() {
-            window.location.href = `../../data/removal/${this.board.id}`;
+            axios.delete(`${this.BASE_URL}/data/removal/${this.board.id}`)
+              .then(res => {
+                window.location.href = `${this.BASE_URL}/home`;
+              })
+              .catch(error => {
+                alert("not found");
+              });
           },
           linkEditPage() {
-            window.location.href = `../modification/${this.board.id}`;
+            window.location.href = `${this.BASE_URL}/home/modification/${this.board.id}`;
           }
       }
     })
