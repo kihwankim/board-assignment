@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <meta charset="utf-8"/>
-  <title>'hello'</title>
+  <title>edit page</title>
 </head>
 <body>
 
@@ -22,8 +22,7 @@
         <v-form class="px-3" 
             v-model="valid" 
             ref="form" 
-            method="post" 
-            action="../../data/new">
+        >
             <v-text-field
             v-model="board.id"
             name="id"
@@ -55,7 +54,7 @@
 
             <v-btn
             class="mr-4"
-            type="submit"
+            @click="editBoardData"
             :disabled="!valid"
             >
             submit
@@ -69,6 +68,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     new Vue({ 
       el: '#app',
@@ -83,7 +83,8 @@
         },
         inputRules: [
             v => v.length >= 3 || 'Minimum length is 3 character'
-        ]
+        ],
+        BASE_URL: 'http://localhost/version4/public/index.php'
       },
       created: function() {
         const data = location.pathname.split('/');
@@ -100,6 +101,23 @@
           })
           .catch(error => {console.log(error)});
       },
+      methods: {
+        editBoardData() {
+            const form = new FormData();
+            form.append("id", this.board.id);
+            form.append("writer", this.board.writer);
+            form.append("title", this.board.title);
+            form.append("description", this.board.description);
+            console.log(form);
+            axios.post(`${this.BASE_URL}/data/edit`, form)
+              .then(res => {
+                window.location.href = `${this.BASE_URL}/home`;
+              })
+              .catch(error => {
+                alert("error for adding new board");
+              });
+          }
+      } 
     })
 </script>
 
