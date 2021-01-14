@@ -37,17 +37,18 @@ class Data extends ResourceController
 		return $this->respond($data);
 	}
 
-    public function new()
+    public function createNewData()
 	{
         header('Access-Control-Allow-Origin: *');
 		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
-		if($this->request->getMethod() == 'post')
+		$boardModel = new BoardModel();
+		$result = $boardModel->insert($_POST);
+		if($result)
 		{
-			$boardModel = new BoardModel();
-			$boardModel->save($_POST);
+			return $this->respondCreated($result);
 		}
-		return redirect()->to('/version4/public/index.php/home');
+		throw new \CodIgniter\Database\Exception\DatabaseException();
     }
     
     public function getBoardDataById($id)
@@ -76,9 +77,10 @@ class Data extends ResourceController
 		$boardData = $boardModel->find($id);
 		if($boardData){
 			$boardModel->delete($id);
+			return $this->respondDeleted('delete well');
 		}
 		
-		return redirect()->to('/version4/public/index.php/home');
+		return $this->failNotFound('this id is not found');
 	}
 }
 ?>
