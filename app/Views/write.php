@@ -86,10 +86,10 @@
             form.append("description", this.description);
             axios.post(`${this.BASE_URL}/data/new`, form)
               .then(res => {
-                window.location.href = `${this.BASE_URL}/home/board/${res.data}`;
+                window.location.href = `${this.BASE_URL}/home`;
               })
               .catch(error => {
-                console.log(error);
+                alert("error for adding new board");
               });
           },
       }
