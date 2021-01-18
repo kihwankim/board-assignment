@@ -42,6 +42,10 @@
 ### 게시판 삭제
 <img width="1421" alt="check before delete" src="https://user-images.githubusercontent.com/19687080/104897300-90eade80-59bb-11eb-8397-d4491f994c4b.png">
 
+### 게시판 input data validate검사
+<img width="1440" alt="error for exceed data len" src="https://user-images.githubusercontent.com/19687080/104897762-1c646f80-59bc-11eb-8072-d1a380b5fc50.png">
+
+
 ### database 구조
 ```sql
     CREATE TABLE board(
