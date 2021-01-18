@@ -21,7 +21,7 @@
             style="width: 30%, height=200">
             <v-toolbar dark>
                 <v-toolbar-title>{{ board['title'] }}</v-toolbar-title>
-                <v-subheader>{{ board['create_at'] }}</v-subheader>
+                <v-subheader>{{ lastestDate() }}</v-subheader>
             </v-toolbar>
             <v-card-subtitle align="right">
                 writer : {{ board['writer'] }}
@@ -64,7 +64,8 @@
             title: '',
             description: '',
             writer: '',
-            create_at: ''
+            created_at: '',
+            updated_at: null
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
@@ -84,6 +85,13 @@
           .catch(error => {console.log(error)});
       },
       methods: {
+          lastestDate() {
+            if(this.board.updated_at != null) {
+              return this.board.updated_at;
+            } else {
+              return this.board.created_at;
+            }
+          },
           deleteBoardDataAfterCheck() {
             if(confirm('Are you sure for deleting this board data?')){
               this.linkDelete();

@@ -6,7 +6,7 @@
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <link href="../assets/board.css" rel="stylesheet">
+  <link href="http://localhost/version4/public//assets/board.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <meta charset="utf-8"/>
   <title>baord</title>
@@ -30,7 +30,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.title }}</td>
         <td>{{ item.writer }}</td>
-        <td>{{ item.create_at }}</td>
+        <td>{{ lastestDate(item) }}</td>
       </tr>
     </tbody>
     </template>
@@ -57,6 +57,7 @@
       el: '#app',
       vuetify: new Vuetify(),
       data: {
+          BASE_URL: 'http://localhost/version4/public/index.php',
           boards: [
             
           ],
@@ -64,7 +65,7 @@
       },
       created: function() {
         const SEARCH_DATA = location.search;
-        fetch(`http://localhost/version4/public/index.php/data${SEARCH_DATA}`)
+        fetch(`${this.BASE_URL}/data${SEARCH_DATA}`)
           .then(res => {
             if(res.ok){
               return res.json();
@@ -78,11 +79,18 @@
           .catch(error => {console.log(error)});
       },
       methods: {
+          lastestDate(item) {
+            if(item.updated_at != null) {
+              return item.updated_at;
+            } else {
+              return item.created_at;
+            }
+          },
           linkCreatePage() {
-            window.location.href = `./home/board`;
+            window.location.href = `${this.BASE_URL}/home/board`;
           },
           linkBoardDetailPage(id) {
-            window.location.href = `./home/board/${id}`;
+            window.location.href = `${this.BASE_URL}/home/board/${id}`;
           }
       },
     });
