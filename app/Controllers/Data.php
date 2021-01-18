@@ -14,7 +14,8 @@ class Data extends ResourceController
 
 	public function index()
 	{
-		$boards = $boardModel->paginate($this->eachPageNumber);
+		$boardModel = new BoardModel();
+		$boards = $boardModel->orderBy('id', 'DESC')->paginate($this->eachPageNumber);
 		$pager = $boardModel->pager;
 		$pager->setPath($this->pagiPath);
 
