@@ -15,39 +15,48 @@
 
 <div id="app">
 <template>
-  <v-simple-table>
-    <template v-slot:default>
-    <thead>
-      <tr>
-        <th class="text-left">#</th>
-        <th class="text-left" style="width: 50%">Title</th>  
-        <th class="text-left">Writer</th>
-        <th class="text-left">Create At</th>  
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="item in boards" @click="linkBoardDetailPage(item.id)">
-        <td>{{ item.id }}</td>
-        <td>{{ item.title }}</td>
-        <td>{{ item.writer }}</td>
-        <td>{{ lastestDate(item) }}</td>
-      </tr>
-    </tbody>
-    </template>
-  </v-simple-table>
-  </template>
-  <div align="right">
-            <v-btn 
-            large
-            elevation="2"
-            @click="linkCreatePage"
-            >
-                create 
-            </v-btn>
+<v-app>
+  <div align="center">
+    <div style="width: 80%;  min-width: 300px">
+    <v-card class="elevation-0" outlined>
+      <v-simple-table>
+        <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">#</th>
+            <th class="text-left" style="width: 50%">Title</th>  
+            <th class="text-left">Writer</th>
+            <th class="text-left">Create At</th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in boards" @click="linkBoardDetailPage(item.id)">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.writer }}</td>
+            <td>{{ lastestDate(item) }}</td>
+          </tr>
+        </tbody>
+        </template>
+      </v-simple-table>
+    </v-card>
+    <div align="right">
+      <v-btn 
+        large
+        elevation="2"
+        color="secondary"
+        @click="linkCreatePage"
+      >
+        create 
+      </v-btn>
       </div>
+      </div>  
       <div style="text-align:center" id="paging-data">
         <p v-html="pager"></p>
       </div>
+  </div>
+  </v-app>
+</template>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>

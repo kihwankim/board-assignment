@@ -14,6 +14,7 @@
 
 <div id="app">
 <template>
+  <v-app>
   <div style="text-align: center; vertical-align: middle;">
       <div style="width:50%; display:inline-table; text-align: right; max-width: 700px; min-width: 100px">  
       <v-card>
@@ -64,6 +65,7 @@
       </v-card>
     </div>
   </div>
+  </v-app>
 </template>
 
 </div>

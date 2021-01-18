@@ -8,12 +8,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <meta charset="utf-8"/>
-  <title>'hello'</title>
+  <title>view board</title>
 </head>
 <body>
 
 <div id="app">
     <template>
+    <v-app>
     <v-container>
         <v-card 
             elevation="2" 
@@ -32,15 +33,16 @@
         </v-card>
         <div align="right">
             <v-btn 
-            large
-            elevation="2"
-            @click="deleteBoardDataAfterCheck"
+              large
+              elevation="2"
+              color="error"
+              @click="deleteBoardDataAfterCheck"
             >
                 delete
             </v-btn>
             <v-btn 
             large
-            color="red"
+            color="primary"
             elevation="2"
             @click="linkEditPage"
             >
@@ -48,6 +50,7 @@
             </v-btn>
       </div>
     </v-container>
+    </v-app>
     </template>
 </div>
 
