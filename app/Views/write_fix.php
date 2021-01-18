@@ -14,54 +14,58 @@
 
 <div id="app">
 <template>
-    <v-card>
-        <v-card-title>
-            <h2>Add a New Board Data</h2>
-        </v-card-title>
-        <v-card-text>
-        <v-form class="px-3" 
-            v-model="valid" 
-            ref="form" 
-        >
-            <v-text-field
-            v-model="board.id"
-            name="id"
-            hidden
-            ></v-text-field>
-
-            <v-text-field
-            v-model="board.writer"
-            label="Writer"
-            required
-            name="writer"
-            ></v-text-field>
-
-            <v-text-field
-            v-model="board.title"
-            label="Title"
-            required
-            name="title"
-            :rules="inputRules"
-            ></v-text-field>
-
-            <v-textarea
-                label="Description"
-                v-model="board.description"
+  <v-app>
+  <div style="text-align: center; vertical-align: middle;">
+      <div style="width:50%; display:inline-table; text-align: right; max-width: 700px; min-width: 100px">  
+      <v-card>
+          <v-card-title>
+              <h2>Add a New Board Data</h2>
+          </v-card-title>
+          <v-card-text>
+          <v-form class="px-3" 
+              v-model="valid" 
+              ref="form" 
+          >
+              <v-text-field
+                v-model="board.writer"
+                label="Writer"
                 required
-                name="description"
-                :rules="inputRules"
-                ></v-textarea>
+                name="writer"
+                counter='30'
+                :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfWriter]"
+              ></v-text-field>
 
-            <v-btn
-            class="mr-4"
-            @click="editBoardData"
-            :disabled="!valid"
-            >
-            submit
-            </v-btn>
-        </v-form>
-        </v-card-text>
-    </v-card>
+              <v-text-field
+                v-model="board.title"
+                label="Title"
+                required
+                name="title"
+                counter='45'
+                :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfTitle]"
+              ></v-text-field>
+
+              <v-textarea
+                  label="Description"
+                  v-model="board.description"
+                  required
+                  counter='1000'
+                  name="description"
+                  :rules="[inputRules.minLenth, inputRules.validateMaxLenth]"
+              ></v-textarea>
+
+              <v-btn
+              class="mr-4"
+              @click="editBoardData"
+              :disabled="!valid"
+              >
+              submit
+              </v-btn>
+          </v-form>
+          </v-card-text>
+      </v-card>
+    </div>
+  </div>
+  </v-app>
 </template>
 
 </div>
@@ -81,9 +85,12 @@
             title: '',
             description: '',            
         },
-        inputRules: [
-            v => v.length >= 3 || 'Minimum length is 3 character'
-        ],
+        inputRules: {
+            minLenth: v => v.length >= 3 || 'Minimum length is 3 character',
+            validateMaxLenth: v => v.length <= 1000 || 'exceed length more than 1000 characters',
+            validateMaxLengthOfTitle: v => v.length <= 45 || 'exceed length more than 45 characters',
+            validateMaxLengthOfWriter: v => v.length <= 30 || 'exceed length more than 30 characters'
+        },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
       created: function() {
@@ -104,6 +111,7 @@
       methods: {
         editBoardData() {
             const form = new FormData();
+            console.log(this.board.id);
             form.append("id", this.board.id);
             form.append("writer", this.board.writer);
             form.append("title", this.board.title);

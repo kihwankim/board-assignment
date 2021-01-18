@@ -41,9 +41,10 @@
     CREATE TABLE board(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     writer VARCHAR(30),
+    title varchar(45),
     description TEXT(1000),
-    create_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    update_at DATETIME
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at DATETIME
 );
 
 insert into board(id, title, writer, description)  

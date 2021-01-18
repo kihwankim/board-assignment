@@ -8,12 +8,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <meta charset="utf-8"/>
-  <title>'hello'</title>
+  <title>view board</title>
 </head>
 <body>
 
 <div id="app">
     <template>
+    <v-app>
     <v-container>
         <v-card 
             elevation="2" 
@@ -21,7 +22,7 @@
             style="width: 30%, height=200">
             <v-toolbar dark>
                 <v-toolbar-title>{{ board['title'] }}</v-toolbar-title>
-                <v-subheader>{{ board['create_at'] }}</v-subheader>
+                <v-subheader>{{ lastestDate() }}</v-subheader>
             </v-toolbar>
             <v-card-subtitle align="right">
                 writer : {{ board['writer'] }}
@@ -32,15 +33,16 @@
         </v-card>
         <div align="right">
             <v-btn 
-            large
-            elevation="2"
-            @click="linkDelete"
+              large
+              elevation="2"
+              color="error"
+              @click="deleteBoardDataAfterCheck"
             >
                 delete
             </v-btn>
             <v-btn 
             large
-            color="red"
+            color="primary"
             elevation="2"
             @click="linkEditPage"
             >
@@ -48,6 +50,7 @@
             </v-btn>
       </div>
     </v-container>
+    </v-app>
     </template>
 </div>
 
@@ -64,7 +67,8 @@
             title: '',
             description: '',
             writer: '',
-            create_at: ''
+            created_at: '',
+            updated_at: null
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
@@ -84,6 +88,18 @@
           .catch(error => {console.log(error)});
       },
       methods: {
+          lastestDate() {
+            if(this.board.updated_at != null) {
+              return this.board.updated_at;
+            } else {
+              return this.board.created_at;
+            }
+          },
+          deleteBoardDataAfterCheck() {
+            if(confirm('Are you sure for deleting this board data?')){
+              this.linkDelete();
+            }
+          },
           linkDelete() {
             axios.delete(`${this.BASE_URL}/data/removal/${this.board.id}`)
               .then(res => {
