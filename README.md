@@ -25,16 +25,22 @@
 ## 화면 구성도
 
 ### 메인화면
-<img width="1440" alt="main페이지" src="https://user-images.githubusercontent.com/19687080/104142379-acc01480-53fe-11eb-894c-5271ee50a453.png">
+<img width="1439" alt="board" src="https://user-images.githubusercontent.com/19687080/104897549-d9a29780-59bb-11eb-8ff0-08a1360c629c.png">
+
 
 ### 게시판 정보
-<img width="1439" alt="board_detail" src="https://user-images.githubusercontent.com/19687080/104142372-a6ca3380-53fe-11eb-9d66-74ef29c2dabc.png">
+<img width="1422" alt="boad view" src="https://user-images.githubusercontent.com/19687080/104897511-cdb6d580-59bb-11eb-89a2-5630d5d90466.png">
 
 ### 게시판 데이터 생성 페이지
-<img width="1440" alt="create-page" src="https://user-images.githubusercontent.com/19687080/104142377-ab8ee780-53fe-11eb-9925-aa6f45165595.png">
+<img width="1433" alt="add page" src="https://user-images.githubusercontent.com/19687080/104897384-a6600880-59bb-11eb-9874-c1cbdfc19f19.png">
+
 
 ### 게시판 수정
-<img width="1436" alt="create page-write" src="https://user-images.githubusercontent.com/19687080/104142376-aa5dba80-53fe-11eb-8bd7-469cdb754747.png">
+<img width="1417" alt="edit" src="https://user-images.githubusercontent.com/19687080/104897438-b7107e80-59bb-11eb-96c5-acf58531ce7e.png">
+
+
+### 게시판 삭제
+<img width="1421" alt="check before delete" src="https://user-images.githubusercontent.com/19687080/104897300-90eade80-59bb-11eb-8397-d4491f994c4b.png">
 
 ### database 구조
 ```sql
