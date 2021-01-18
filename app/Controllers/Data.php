@@ -14,9 +14,6 @@ class Data extends ResourceController
 
 	public function index()
 	{
-		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
 		$boards = $boardModel->paginate($this->eachPageNumber);
 		$pager = $boardModel->pager;
 		$pager->setPath($this->pagiPath);
@@ -39,9 +36,6 @@ class Data extends ResourceController
 
     public function createNewData()
 	{
-        header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
 		$boardModel = new BoardModel();
 		$result = $boardModel->insert($_POST);
 		if($result)
@@ -53,10 +47,6 @@ class Data extends ResourceController
     
     public function getBoardDataById($id)
 	{
-        header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
-
 		$boardModel = new BoardModel();
 		$board = $boardModel->find($id);
 
@@ -69,11 +59,7 @@ class Data extends ResourceController
     
     public function removeById($id)
 	{
-        header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
-
-		$boardModel = new BoardModel();
+ 		$boardModel = new BoardModel();
 		$boardData = $boardModel->find($id);
 		if($boardData){
 			$boardModel->delete($id);
@@ -85,9 +71,6 @@ class Data extends ResourceController
 
 	public function editBoardData()
 	{
-		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");$boardModel = new BoardModel();
 		$boardModel = new BoardModel();
 		$result = $boardModel->save($_POST);
 		if($result)
