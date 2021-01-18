@@ -34,7 +34,7 @@
             <v-btn 
             large
             elevation="2"
-            @click="linkDelete"
+            @click="deleteBoardDataAfterCheck"
             >
                 delete
             </v-btn>
@@ -84,6 +84,11 @@
           .catch(error => {console.log(error)});
       },
       methods: {
+          deleteBoardDataAfterCheck() {
+            if(confirm('Are you sure for deleting this board data?')){
+              this.linkDelete();
+            }
+          },
           linkDelete() {
             axios.delete(`${this.BASE_URL}/data/removal/${this.board.id}`)
               .then(res => {
