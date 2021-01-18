@@ -9,7 +9,7 @@
   <link href="../assets/board.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <meta charset="utf-8"/>
-  <title>'hello'</title>
+  <title>baord</title>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
     <thead>
       <tr>
         <th class="text-left">#</th>
-        <th class="text-left">Title</th>  
+        <th class="text-left" style="width: 50%">Title</th>  
         <th class="text-left">Writer</th>
         <th class="text-left">Create At</th>  
       </tr>
