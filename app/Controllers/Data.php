@@ -16,7 +16,7 @@ class Data extends ResourceController
 	{
 		$boardModel = new BoardModel();
 		$pageNumber = $this->request->getVar("page");
-		$boards = $boardModel->orderBy('updated_at, created_at', 'DESC')->paginate($this->eachPageNumber);
+		$boards = $boardModel->orderBy('if(updated_at is null, created_at, updated_at) DESC')->paginate($this->eachPageNumber);
 		$pager = $boardModel->pager;
 		$pager->setPath($this->pagiPath);
 
