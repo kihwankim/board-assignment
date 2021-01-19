@@ -25,8 +25,8 @@ class Data extends ResourceController
 			if(strlen($boards[$index]['title']) >= 20){
 				$headStr = substr($boards[$index]['title'], 0, 20).'...';
 				$boards[$index]['title'] = $headStr;
-				unset($boards[$index]['pw']);
 			}
+			unset($boards[$index]['pw']);
 		}
 
 		$data = [
