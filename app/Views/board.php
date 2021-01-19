@@ -30,8 +30,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in boards" @click="linkBoardDetailPage(item.id)">
-            <td>{{ item.id }}</td>
+          <tr v-for="(item, index) in boards" @click="linkBoardDetailPage(item.id)">
+            <td>{{ renderIndexNumber(index) }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.writer }}</td>
             <td>{{ lastestDate(item) }}</td>
@@ -71,6 +71,7 @@
             
           ],
         pager: '',
+        pageNumber: 1,
       },
       created: function() {
         const SEARCH_DATA = location.search;
@@ -84,6 +85,10 @@
           .then(json => {
             this.boards = json.boards;
             this.pager = json.pager;
+            if(json.pageNumber) {
+              this.pageNumber = json.pageNumber;
+              console.log(this.pageNumber);
+            }
           })
           .catch(error => {console.log(error)});
       },
@@ -100,6 +105,9 @@
           },
           linkBoardDetailPage(id) {
             window.location.href = `${this.BASE_URL}/home/board/${id}`;
+          },
+          renderIndexNumber(index) {
+            return 10 * (this.pageNumber - 1) + index + 1;
           }
       },
     });

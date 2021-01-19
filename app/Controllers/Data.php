@@ -15,7 +15,8 @@ class Data extends ResourceController
 	public function index()
 	{
 		$boardModel = new BoardModel();
-		$boards = $boardModel->orderBy('id', 'DESC')->paginate($this->eachPageNumber);
+		$pageNumber = $this->request->getVar("page");
+		$boards = $boardModel->orderBy('updated_at, created_at', 'DESC')->paginate($this->eachPageNumber);
 		$pager = $boardModel->pager;
 		$pager->setPath($this->pagiPath);
 
@@ -30,6 +31,7 @@ class Data extends ResourceController
 		$data = [
 			'boards' => $boards,
 			'pager' => $pager->links(),
+			'pageNumber' => $pageNumber
 		];
 
 		return $this->respond($data);
