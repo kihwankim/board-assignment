@@ -48,25 +48,28 @@
 
 ### database 구조
 ```sql
-    CREATE TABLE board(
-	id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE board(
+	id INT PRIMARY KEY auto_increment,
     writer VARCHAR(30),
     title varchar(45),
+    pw varchar(70),
     description TEXT(1000),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at DATETIME
+    updated_at datetime on update CURRENT_TIMESTAMP
 );
 
-insert into board(id, title, writer, description)  
-    values(1, 'title1', 'abc', "hello this is first data"),
-            (2, 'title2', 'bdc', "hello this is second data"),
-            (3, 'title3', 'efg', "hello this is third data"),
-            (4, 'title4', 'afda', "hello this is fourth data"),
-            (5, 'title5', 'afd', "hello this is"),
-            (6, 'title6', 'fdsf', "hello this is this is"),
-            (7, 'title7', 'vdsv', "hello this is  hola !!!"),
-            (8, 'title8', '13', "there are a lot of data"),
-            (9, 'title9', 'fd', "this is second data"),
-            (10, 'title10', 'fadf', "this is next data"),
-            (11, 'title11', 'fdasf', "this is test data");
+
+insert into board(id, title, writer, description, pw)  
+    values(1, 'title1', 'abc', "hello this is first data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (2, 'title2', 'bdc', "hello this is second data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (3, 'title3', 'efg', "hello this is third data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (4, 'title4', 'afda', "hello this is fourth data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (5, 'title5', 'afd', "hello this is", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (6, 'title6', 'fdsf', "hello this is this is", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (7, 'title7', 'vdsv', "hello this is  hola !!!", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (8, 'title8', '13', "there are a lot of data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (9, 'title9', 'fd', "this is second data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (10, 'title10', 'fadf', "this is next data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW'),
+            (11, 'title11', 'fdasf', "this is test data", '$2y$10$9yhVOO.cCYzxA3lvpnvxweqb1O3d1N8qQXo8ReEwRHd8cFpRIW4oW');
+        
 ```
