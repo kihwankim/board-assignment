@@ -32,13 +32,13 @@
             </v-card-text>
         </v-card>
         <div align="right">
-            <v-btn 
-              large
-              elevation="2"
+            <v-btn
+              class="white--text"
               color="error"
-              @click="deleteBoardDataAfterCheck"
+              large
+              @click="overlay = !overlay"
             >
-                delete
+              Delete
             </v-btn>
             <v-btn 
             large
@@ -48,6 +48,48 @@
             >
                 edit
             </v-btn>
+      </div>
+      <div>
+      <v-overlay
+              :z-index="zIndex"
+              :value="overlay"
+            >
+              <v-form v-model="valid">
+                <v-container>
+                  <v-row>
+                    <v-text-field
+                      v-model="board.pw"
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfPW, inputRules.validatePWData]"
+                      :type="show1 ? 'text' : 'password'"
+                      name="pw"
+                      label="Password"
+                      counter = "60"
+                      @click:append="show1 = !show1"
+                    ></v-text-field>
+                  </v-row>
+                  <v-row>
+                    <v-btn
+                      large
+                      elevation="2"
+                      color="error"
+                      :disabled="!valid"
+                      @click="deleteBoardDataAfterCheck"
+                    >
+                      Delete
+                    </v-btn>
+                    <v-btn
+                      large
+                      elevation="2"
+                      color="primary"
+                      @click="overlay = false"
+                    >
+                      Canceal
+                    </v-btn>
+                  </v-row>
+                </v-conatiner>
+              </v-form>
+            </v-overlay>
       </div>
     </v-container>
     </v-app>
@@ -62,13 +104,23 @@
       el: '#app',
       vuetify: new Vuetify(),
       data: {
+        overlay: false,
+        zIndex: 0,
+        show1: false,
+        valid: false,
         board:{
+            pw: '',
             id: location.search,
             title: '',
             description: '',
             writer: '',
             created_at: '',
             updated_at: null
+        },
+        inputRules : {
+          minLenth: v => v.length >= 3 || 'Minimum length is 3 character',
+          validateMaxLengthOfPW: v => v.length <= 60 || 'exceed length more than 60 characters',
+          validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'inseret more thab 1 character/number/extra data'
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
@@ -84,6 +136,16 @@
           })
           .then(json => {
             this.board = json.board;
+            const newBoard = {
+                pw: '',
+                id: json.board.id,
+                title: json.board.title,
+                description: json.board.description,
+                writer: json.board.writer,
+                created_at: json.board.created_at,
+                updated_at: json.board.updated_at
+            }
+            this.board = newBoard;
           })
           .catch(error => {console.log(error)});
       },
@@ -96,17 +158,19 @@
             }
           },
           deleteBoardDataAfterCheck() {
-            if(confirm('Are you sure for deleting this board data?')){
-              this.linkDelete();
-            }
+            this.linkDelete(this.board.pw);
           },
-          linkDelete() {
-            axios.delete(`${this.BASE_URL}/data/removal/${this.board.id}`)
+          linkDelete(pw) {
+            const formData = new FormData();
+            formData.append("pw", pw);
+            formData.append("id", this.board.id);
+            axios.post(`${this.BASE_URL}/data/removal`, formData)
               .then(res => {
                 window.location.href = `${this.BASE_URL}/home`;
               })
               .catch(error => {
-                alert("not found");
+                alert("password is wrong!!!");
+                this.overlay = false;
               });
           },
           linkEditPage() {

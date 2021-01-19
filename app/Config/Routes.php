@@ -41,7 +41,7 @@ $routes->group('home', function($routes) {
 
 $routes->group('data', function($routes) {
 	$routes->get('board/(:any)', 'Data::getBoardDataById/$1');
-	$routes->delete('removal/(:any)', 'Data::removeById/$1');
+	$routes->post('removal', 'Data::removeById');
 	$routes->post('new', 'Data::createNewData');
 	$routes->post('edit', 'Data::editBoardData');
 });

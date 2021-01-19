@@ -17,7 +17,7 @@
 <v-app>
   <div style="text-align: center; vertical-align: middle;">
     <div style="width:50%; display:inline-table; text-align: right; max-width: 700px; min-width: 100px">
-      <v-card class="elevation-0">
+      <v-card class="elevation-2">
           <v-card-title>
               <h2>Add a New Board Data</h2>
           </v-card-title>
@@ -52,8 +52,18 @@
                   counter='1000'
                   name="description"
                   :rules="[inputRules.minLenth, inputRules.validateMaxLenth]"
-                  ></v-textarea>
-
+              ></v-textarea>
+              <v-text-field
+                v-model="pw"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfPW, inputRules.validatePWData]"
+                :type="show1 ? 'text' : 'password'"
+                name="pw"
+                label="password"
+                hint="At least 8 characters"
+                counter = 60
+                @click:append="show1 = !show1"
+              ></v-text-field>
               <v-btn
                   class="mr-4"
                   :disabled="!valid"
@@ -81,18 +91,23 @@
         valid: false,
         writer: '',
         title: '',
+        pw: '',
+        show1: false,
         description: '',
         inputRules: {
             minLenth: v => v.length >= 3 || 'Minimum length is 3 character',
             validateMaxLenth: v => v.length <= 1000 || 'exceed length more than 1000 characters',
             validateMaxLengthOfTitle: v => v.length <= 45 || 'exceed length more than 45 characters',
-            validateMaxLengthOfWriter: v => v.length <= 30 || 'exceed length more than 30 characters'
+            validateMaxLengthOfWriter: v => v.length <= 30 || 'exceed length more than 30 characters',
+            validateMaxLengthOfPW: v => v.length <= 60 || 'exceed length more than 60 characters',
+            validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'inseret more thab 1 character/number/extra data'
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
       methods: {
         createNewBoard() {
             const form = new FormData();
+            form.append('pw', this.pw);
             form.append("writer", this.writer);
             form.append("title", this.title);
             form.append("description", this.description);
