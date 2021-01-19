@@ -25,6 +25,7 @@ class Data extends ResourceController
 			if(strlen($boards[$index]['title']) >= 20){
 				$headStr = substr($boards[$index]['title'], 0, 20).'...';
 				$boards[$index]['title'] = $headStr;
+				unset($boards[$index]['pw']);
 			}
 		}
 
@@ -54,17 +55,20 @@ class Data extends ResourceController
 		$board = $boardModel->find($id);
 
 		if($board){
+			unset($board['pw']);
 			$data['board'] = $board;
 		}
 
 		return $this->respond($data);
     }
     
-    public function removeById($id)
+    public function removeById()
 	{
- 		$boardModel = new BoardModel();
+		$id = $_POST['id'];
+		$boardModel = new BoardModel();
 		$boardData = $boardModel->find($id);
-		if($boardData){
+		if($boardData && password_verify($_POST['pw'], $boardData['pw']))
+		{
 			$boardModel->delete($id);
 			return $this->respondDeleted('delete well');
 		}
@@ -75,9 +79,12 @@ class Data extends ResourceController
 	public function editBoardData()
 	{
 		$boardModel = new BoardModel();
-		$result = $boardModel->save($_POST);
-		if($result)
-		{
+		$beforeData = $boardModel->find($_POST['id']);
+		if($beforeData && password_verify($_POST['pw'], $beforeData['pw']))
+		{	
+			$_POST['pw'] = $beforeData['pw'];
+			$result = $boardModel->save($_POST);
+
 			return $this->respondCreated($result);
 		}
 		throw new \CodIgniter\Database\Exception\DatabaseException();

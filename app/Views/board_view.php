@@ -96,17 +96,19 @@
             }
           },
           deleteBoardDataAfterCheck() {
-            if(confirm('Are you sure for deleting this board data?')){
-              this.linkDelete();
-            }
+            const pw = prompt("Insert pw :", "");
+            this.linkDelete(pw);
           },
-          linkDelete() {
-            axios.delete(`${this.BASE_URL}/data/removal/${this.board.id}`)
+          linkDelete(pw) {
+            const formData = new FormData();
+            formData.append("pw", pw);
+            formData.append("id", this.board.id);
+            axios.post(`${this.BASE_URL}/data/removal`, formData)
               .then(res => {
                 window.location.href = `${this.BASE_URL}/home`;
               })
               .catch(error => {
-                alert("not found");
+                alert("password is wrong!!!");
               });
           },
           linkEditPage() {
