@@ -100,7 +100,7 @@
             validateMaxLengthOfTitle: v => v.length <= 45 || 'exceed length more than 45 characters',
             validateMaxLengthOfWriter: v => v.length <= 30 || 'exceed length more than 30 characters',
             validateMaxLengthOfPW: v => v.length <= 60 || 'exceed length more than 60 characters',
-            validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'inseret more thab 1 character/number/extra data'
+            validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'inseret more than 1 character/number/extra data'
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },

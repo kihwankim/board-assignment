@@ -56,15 +56,15 @@
               light="true"
               dark="false"
             >
-            <v-toolbar
-              prominent
-            >
+            <v-container>
               <v-form v-model="valid">
-                <v-container>
-                  <v-toolbar-title>
+                  <v-toolbar>
+                    Are you Sure for Deleting this??
+                  </v-toolbar>
+                  <v-toolbar>
                   <v-row>
                     <v-text-field
-                      width="100px"
+                      class="ma-2"
                       v-model="board.pw"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfPW, inputRules.validatePWData]"
@@ -75,9 +75,11 @@
                       @click:append="show1 = !show1"
                     ></v-text-field>
                   </v-row>
-                  </v-toolbar-title>
-                  <v-row class="pt-10">
+                  </v-toolbar>
+                  <v-toolbar>
+                  <v-row>
                     <v-btn
+                      class="ml-5"
                       large
                       elevation="2"
                       color="error"
@@ -95,9 +97,9 @@
                       Canceal
                     </v-btn>
                   </v-row>
-                </v-conatiner>
+                  </v-toolbar>
               </v-form>
-              </v-toolbar>
+              </v-conatiner>
             </v-overlay>
       </div>
     </v-container>
@@ -128,8 +130,8 @@
         },
         inputRules : {
           minLenth: v => v.length >= 3 || 'Minimum length is 3 character',
-          validateMaxLengthOfPW: v => v.length <= 60 || 'exceed length more than 60 characters',
-          validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'inseret more thab 1 character/number/extra data'
+          validateMaxLengthOfPW: v => v.length <= 60 || 'Maximum len is 60 characters',
+          validatePWData: v=> /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/.test(v) || 'insert char/number/extra'
         },
         BASE_URL: 'http://localhost/version4/public/index.php'
       },
