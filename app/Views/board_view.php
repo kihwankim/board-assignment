@@ -50,14 +50,21 @@
             </v-btn>
       </div>
       <div>
-      <v-overlay
+        <v-overlay
               :z-index="zIndex"
               :value="overlay"
+              light="true"
+              dark="false"
+            >
+            <v-toolbar
+              prominent
             >
               <v-form v-model="valid">
                 <v-container>
+                  <v-toolbar-title>
                   <v-row>
                     <v-text-field
+                      width="100px"
                       v-model="board.pw"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[inputRules.minLenth, inputRules.validateMaxLengthOfPW, inputRules.validatePWData]"
@@ -68,7 +75,8 @@
                       @click:append="show1 = !show1"
                     ></v-text-field>
                   </v-row>
-                  <v-row>
+                  </v-toolbar-title>
+                  <v-row class="pt-10">
                     <v-btn
                       large
                       elevation="2"
@@ -89,6 +97,7 @@
                   </v-row>
                 </v-conatiner>
               </v-form>
+              </v-toolbar>
             </v-overlay>
       </div>
     </v-container>
