@@ -25,26 +25,25 @@
 ## 화면 구성도
 
 ### 메인화면
-<img width="1439" alt="board" src="https://user-images.githubusercontent.com/19687080/104897549-d9a29780-59bb-11eb-8ff0-08a1360c629c.png">
-
+<img width="1440" alt="board main page" src="https://user-images.githubusercontent.com/19687080/105117198-7164ca80-5b0f-11eb-983b-8056aede63f8.png">
 
 ### 게시판 정보
 <img width="1422" alt="boad view" src="https://user-images.githubusercontent.com/19687080/104897511-cdb6d580-59bb-11eb-89a2-5630d5d90466.png">
 
 ### 게시판 데이터 생성 페이지
-<img width="1433" alt="add page" src="https://user-images.githubusercontent.com/19687080/104897384-a6600880-59bb-11eb-9874-c1cbdfc19f19.png">
-
+<img width="1438" alt="create" src="https://user-images.githubusercontent.com/19687080/105117161-5e51fa80-5b0f-11eb-8cd1-de069559b070.png">
 
 ### 게시판 수정
-<img width="1417" alt="edit" src="https://user-images.githubusercontent.com/19687080/104897438-b7107e80-59bb-11eb-96c5-acf58531ce7e.png">
-
+<img width="1440" alt="boardedit" src="https://user-images.githubusercontent.com/19687080/105117353-b12bb200-5b0f-11eb-8c9e-fc7405bcd286.png">
 
 ### 게시판 삭제
-<img width="1421" alt="check before delete" src="https://user-images.githubusercontent.com/19687080/104897300-90eade80-59bb-11eb-8397-d4491f994c4b.png">
+<img width="1423" alt="delete" src="https://user-images.githubusercontent.com/19687080/105117234-82154080-5b0f-11eb-8bdd-5620f79851e7.png">
 
 ### 게시판 input data validate검사
-<img width="1440" alt="error for exceed data len" src="https://user-images.githubusercontent.com/19687080/104897762-1c646f80-59bc-11eb-8072-d1a380b5fc50.png">
+<img width="1439" alt="wrong data input" src="https://user-images.githubusercontent.com/19687080/105117277-92c5b680-5b0f-11eb-9ab4-9dfb4e97c46b.png">
 
+### edit 페이지 비밀번호 검증 실패
+<img width="1438" alt="password wrong" src="https://user-images.githubusercontent.com/19687080/105117417-c7d20900-5b0f-11eb-87d2-b6c0b7633b7f.png">
 
 ### database 구조
 ```sql
