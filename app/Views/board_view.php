@@ -15,20 +15,23 @@
 <div id="app">
     <template>
     <v-app>
-    <v-container>
+    <v-container style="width: 70%">
         <v-card 
             elevation="2" 
             outlined 
             style="width: 30%, height=200">
             <v-toolbar dark>
-                <v-toolbar-title>{{ board['title'] }}</v-toolbar-title>
+                <v-toolbar-title class="ml-5">{{ board['title'] }}</v-toolbar-title>
+                <v-spacer></v-spacer>
                 <v-subheader>{{ lastestDate() }}</v-subheader>
             </v-toolbar>
             <v-card-subtitle align="right">
                 writer : {{ board['writer'] }}
             </v-card-subtitle>
-            <v-card-text>
+            <v-card-text style="min-height: 300px;" align="center">
+              <div style="width: 80%" align="left">
                 {{ board['description'] }}
+              </div>
             </v-card-text>
         </v-card>
         <div align="right">
