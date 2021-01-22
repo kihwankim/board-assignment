@@ -30,7 +30,7 @@
 <img width="1440" alt="board main page" src="https://user-images.githubusercontent.com/19687080/105117198-7164ca80-5b0f-11eb-983b-8056aede63f8.png">
 
 ### 게시판 정보
-<img width="1422" alt="boad view" src="https://user-images.githubusercontent.com/19687080/104897511-cdb6d580-59bb-11eb-89a2-5630d5d90466.png">
+<img width="1440" alt="게시판 디자인 변경" src="https://user-images.githubusercontent.com/19687080/105471690-5dbb8e80-5cde-11eb-88cc-ccc7a31444b2.png">
 
 ### 게시판 데이터 생성 페이지
 <img width="1438" alt="create" src="https://user-images.githubusercontent.com/19687080/105117161-5e51fa80-5b0f-11eb-8cd1-de069559b070.png">
