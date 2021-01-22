@@ -56,8 +56,8 @@
         <v-overlay
               :z-index="zIndex"
               :value="overlay"
-              light="true"
-              dark="false"
+              :light="true"
+              :dark="false"
             >
             <v-container>
               <v-form v-model="valid">
