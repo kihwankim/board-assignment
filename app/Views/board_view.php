@@ -15,26 +15,30 @@
 <div id="app">
     <template>
     <v-app>
-    <v-container style="width: 70%">
+    <v-container>
+      <v-row>
+      <v-col>
         <v-card 
-            elevation="2" 
-            outlined 
-            style="width: 30%, height=200">
+          elevation="2" 
+          outlined 
+          height="300"
+        >
             <v-toolbar dark>
-                <v-toolbar-title class="ml-5">{{ board['title'] }}</v-toolbar-title>
+                <v-toolbar-title>{{ board['title'] }}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-subheader>{{ lastestDate() }}</v-subheader>
             </v-toolbar>
-            <v-card-subtitle align="right">
+            <v-card-subtitle class="d-flex justify-end">
                 writer : {{ board['writer'] }}
             </v-card-subtitle>
-            <v-card-text style="min-height: 300px;" align="center">
-              <div style="width: 80%" align="left">
+            <v-card-text>
                 {{ board['description'] }}
-              </div>
             </v-card-text>
         </v-card>
-        <div align="right">
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="d-flex justify-end">
             <v-btn
               class="white--text"
               color="error"
@@ -44,14 +48,15 @@
               Delete
             </v-btn>
             <v-btn 
-            large
-            color="primary"
-            elevation="2"
-            @click="linkEditPage"
+              large
+              color="primary"
+              elevation="2"
+              @click="linkEditPage"
             >
                 edit
             </v-btn>
-      </div>
+          </v-col>
+      </v-row>
       <div>
         <v-overlay
               :z-index="zIndex"
